@@ -19,6 +19,16 @@ const registerUser = async (req, res) => {
     return res.status(400).json({ message: 'Please add all fields' });
   }
 
+  const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      message:
+        'Password must be at least 8 characters and include uppercase, lowercase, and number'
+    });
+}
+
   try {
     // Check if user exists
     const userExists = await User.findOne({ email });

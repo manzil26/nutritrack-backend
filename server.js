@@ -18,9 +18,24 @@ app.set('trust proxy', 1); // For cPanel/Apache proxies
 
 // Middleware
 app.use(helmet());
-app.use(morgan('dev'));
-app.use(cors());
-app.use(express.json());
+// app.use(morgan('dev'));
+if(process.env.NODE_ENV !== 'production'){
+   app.use(morgan('dev'));
+}
+
+// app.use(cors());
+if (process.env.NODE_ENV === 'production') {
+  app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+  }));
+} else {
+  app.use(cors());
+}
+// app.use(express.json());
+app.use(express.json({
+  limit: '10kb'
+}));
 
 // Rate limiting
 const limiter = rateLimit({
