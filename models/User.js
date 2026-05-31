@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -24,11 +25,31 @@ const userSchema = new mongoose.Schema({
     default: 'Nutritional explorer and fitness enthusiast.' 
   },
   preferences: {
-    darkMode: { type: Boolean, default: false },
-    emailNotifications: { type: Boolean, default: true },
-    appleHealthSync: { type: Boolean, default: false },
-    language: { type: String, default: 'en' }
+  darkMode: {
+    type: Boolean,
+    default: false
   },
+
+  emailNotifications: {
+    type: Boolean,
+    default: true
+  },
+
+  appleHealthSync: {
+    type: Boolean,
+    default: false
+  },
+
+  trackingEnabled: {
+    type: Boolean,
+    default: true
+  },
+
+  language: {
+    type: String,
+    default: 'en'
+  }
+},
   goals: {
     calories: { type: Number, default: 2000 },
     protein: { type: Number, default: 150 },
