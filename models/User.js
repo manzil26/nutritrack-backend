@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     darkMode: { type: Boolean, default: false },
     emailNotifications: { type: Boolean, default: true },
     appleHealthSync: { type: Boolean, default: false },
-    language: { type: String, default: 'English (US)' }
+    language: { type: String, default: 'en' }
   },
   goals: {
     calories: { type: Number, default: 2000 },
