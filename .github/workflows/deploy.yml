@@ -28,7 +28,6 @@ jobs:
       - name: Create deployment package
         run: |
           zip -r release.zip . \
-          -x "node_modules/*" \
           -x ".git/*" \
           -x ".github/*" \
           -x ".env.example" \
