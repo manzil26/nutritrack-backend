@@ -11,7 +11,7 @@ const getProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-    const { name, bio, avatar, goals, preferences } = req.body;
+    const { name, bio, avatar, goals } = req.body;
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -24,10 +24,6 @@ const updateProfile = async (req, res) => {
       if (goals.protein) user.goals.protein = goals.protein;
       if (goals.carbs) user.goals.carbs = goals.carbs;
       if (goals.fat) user.goals.fat = goals.fat;
-    }
-
-    if (preferences) {
-      user.preferences = { ...user.preferences, ...preferences };
     }
 
     const updatedUser = await user.save();

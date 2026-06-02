@@ -24,32 +24,6 @@ const userSchema = new mongoose.Schema({
     type: String, 
     default: 'Nutritional explorer and fitness enthusiast.' 
   },
-  preferences: {
-  darkMode: {
-    type: Boolean,
-    default: false
-  },
-
-  emailNotifications: {
-    type: Boolean,
-    default: true
-  },
-
-  appleHealthSync: {
-    type: Boolean,
-    default: false
-  },
-
-  trackingEnabled: {
-    type: Boolean,
-    default: true
-  },
-
-  language: {
-    type: String,
-    default: 'en'
-  }
-},
   goals: {
     calories: { type: Number, default: 2000 },
     protein: { type: Number, default: 150 },
