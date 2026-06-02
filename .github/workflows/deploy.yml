@@ -16,15 +16,27 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      - run: 
+      - name: Build application
+        run: npm run build --if-present
+
+      - name: Prune production dependencies
+        run: npm prune --production
+
+      - name: Create deployment package
+        run: |
           zip -r release.zip . \
           -x "node_modules/*" \
           -x ".git/*" \
           -x ".github/*" \
+          -x ".env.example" \
+          -x "*.md" \
+          -x ".gitignore"
 
-      - uses: azure/webapps-deploy@v3
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
         with:
           app-name: nutritrack-backend-
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
