@@ -20,6 +20,6 @@ jobs:
 
       - uses: azure/webapps-deploy@v3
         with:
-          app-name: nutritrack-backend-17
+          app-name: nutritrack-backend-
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
           package: .
