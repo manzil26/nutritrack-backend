@@ -18,8 +18,14 @@ jobs:
 
       - run: npm install
 
+      - run: 
+          zip -r release.zip . \
+          -x "node_modules/*" \
+          -x ".git/*" \
+          -x ".github/*" \
+
       - uses: azure/webapps-deploy@v3
         with:
           app-name: nutritrack-backend-
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
-          package: .
+          package: release.zip
