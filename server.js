@@ -45,7 +45,9 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/foods', require('./routes/foods'));
 app.use('/api/meals', require('./routes/meals'));
