@@ -11,28 +11,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Build application
-        run: npm run build --if-present
-
-      - name: Create deployment package
-        run: |
-          zip -r release.zip . \
-          -x ".git/*" \
-          -x ".github/*" \
-          -x ".env.example" \
-          -x "*.md" \
-          -x ".gitignore"
-
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v3
+      - uses: azure/webapps-deploy@v3
         with:
           app-name: psonutritrack-backend
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
-          package: release.zip
+          package: .
